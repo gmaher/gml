@@ -9,8 +9,6 @@ class AbstractExperiment(object):
         raise RuntimeError("abstract not implemented")
     def evaluate(self):
         raise RuntimeError("abstract not implemented")
-    def store(self):
-        raise RuntimeError("abstract not implemented")
 
 class AbstractModel(object):
     def __init__(self):
