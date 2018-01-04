@@ -1,14 +1,17 @@
 class AbstractExperiment(object):
-    def __init__(self,config):
-        raise RuntimeError("abstract not implemented")
-    def load(self,config):
-        raise RuntimeError("abstract not implemented")
+    def __init__(self,trainer,predictor,evaluator):
+        self.trainer     = trainer
+        self.predictor   = predictor
+        self.evaluator   = evaluator
+
     def predict(self):
-        raise RuntimeError("abstract not implemented")
+        self.predictor.predict()
+
     def train(self):
-        raise RuntimeError("abstract not implemented")
+        self.trainer.train()
+
     def evaluate(self):
-        raise RuntimeError("abstract not implemented")
+        self.evaluator.predict()
 
 class AbstractModel(object):
     def __init__(self):
@@ -29,19 +32,23 @@ class AbstractDataset(object):
         raise RuntimeError("abstract not implemented")
 
 class AbstractTrainer(object):
-    def __init__(self):
-        raise RuntimeError("abstract not implemented")
+    def __init__(self, model, dataset):
+        self.model   = model
+        self.dataset = dataset
+
     def train(self):
-        raise RuntimeError("abstract not implemented")
+        while not self.dataset.done:
+            T = self.dataset.next()
+            self.model.train(T)
 
-class AbstractPredicter(object):
-    def __init__(self):
-        raise RuntimeError("abstract not implemented")
+class AbstractPredictor(object):
+    def __init__(self, model, dataset, store_fn):
+        self.model   = model
+        self.dataset = dataset
+        self.store   = store_fn
+
     def predict(self):
-        raise RuntimeError("abstract not implemented")
-
-class AbstractEvaluator(object):
-    def __init__(self):
-        raise RuntimeError("abstract not implemented")
-    def evaluate(self):
-        raise RuntimeError("abstract not implemented")
+        while not self.dataset.done:
+            T = self.dataset.next()
+            P = self.model.predict(T)
+            self.store(T,P)

@@ -1,5 +1,6 @@
 import yaml
 import csv
+import os
 
 def load_yaml(fn):
     """loads a yaml file into a dict"""
@@ -18,7 +19,7 @@ def parse_config(config_filename):
     if '.yaml' not in config_file:
         raise RuntimeError('config file must be a yaml file')
 
-    config = io_.load_yaml(config_file)
+    config = load_yaml(config_file)
 
     if not config.has_key('EXPERIMENT_FILE'):
         raise RuntimeError('config file must specify EXPERIMENT_FILE')
