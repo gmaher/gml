@@ -52,3 +52,24 @@ class AbstractPredictor(object):
             T = self.dataset.next()
             P = self.model.predict(T)
             self.store(T,P)
+
+class Node(object):
+    def __init__(f, input_nodes, name):
+        self.input_nodes = input_nodes
+        self.f = f
+        self.name = name
+
+        if type(input_nodes) == list:
+            if any([not type(n) == Node for n in input_nodes]):
+                raise RuntimeError("One or more specified input nodes is not of type  Node")
+            self.get_output = _multi_get_output
+        elif type(input_nodes) == Node:
+            self.get_output = _get_single_output
+        else:
+            raise RuntimeError("Input node is not of type Node")
+
+    def _multi_get_output(self):
+        inputs = [n.get_output() for n in self.input_nodes]
+        return self.f(inputs)
+    def _get_single_output(self):
+        return self.f(self.input_nodes.get_output())
