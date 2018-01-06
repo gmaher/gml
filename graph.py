@@ -1,15 +1,19 @@
 import inspect
 
+def input_node(self):
+    if self.output == None:
+        raise RuntimeError("node {} is an input node but no input supplied".format(self.name))
+
 class Graph(object):
     def __init__(self):
         self.nodes = {}
 
-    def add_node(self,n,name,depends={}):
+    def add_node(self,n=input_node,name="node",depends=[]):
 
         self.check_inputs(n,name,depends)
 
         input_nodes = []
-        for k in depends.keys():
+        for k in depends:
             input_nodes.append(self.nodes[k])
 
         if callable(n):
@@ -21,7 +25,7 @@ class Graph(object):
 
         self.nodes[name] = node
 
-    def get(name, input_dict={}):
+    def get(self, name, input_dict={}):
         self.check_get_inputs(name, input_dict)
 
         for k in input_dict.keys():
@@ -38,7 +42,7 @@ class Graph(object):
         if self.nodes.has_key(name):
             raise RuntimeError("node with name {} already exists".format(name))
 
-        for k in depends.keys():
+        for k in depends:
             if not self.nodes.has_key(k):
                 raise RuntimeError("node with name {} declared as dependency for {} but does not exist".format(k,name))
 
@@ -47,7 +51,7 @@ class Graph(object):
         #     raise RuntimeError("input function f has {} arguments but {} dependencies were supplied".format(num_args, len(depends.keys())))
 
     def check_get_inputs(self,name,input_dict):
-        for k in input_dict.keys()
+        for k in input_dict.keys():
             if not self.nodes.has_key(k):
                 raise RuntimeError("Node with name {} supplied as input but does not exist".format(k))
 
