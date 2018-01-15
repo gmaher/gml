@@ -12,16 +12,16 @@ class Graph(object):
 
         self.check_inputs(n,name,depends)
 
-        input_nodes = []
+        input_nodes = {}
         for k in depends:
-            input_nodes.append(self.nodes[k])
+            input_nodes[k] = self.nodes[k]
 
         if callable(n):
             node = Node(n,name)
         else:
             node = n
 
-        node.set_input_nodes(input_nodes)
+        node.set_input_nodes(input_nodes,depends)
 
         self.nodes[name] = node
 
@@ -46,10 +46,6 @@ class Graph(object):
             if not self.nodes.has_key(k):
                 raise RuntimeError("node with name {} declared as dependency for {} but does not exist".format(k,name))
 
-        # num_args = f.func_code.co_argcount
-        # if not num_args == len(depends.keys()):
-        #     raise RuntimeError("input function f has {} arguments but {} dependencies were supplied".format(num_args, len(depends.keys())))
-
     def check_get_inputs(self,name,input_dict):
         for k in input_dict.keys():
             if not self.nodes.has_key(k):
@@ -60,23 +56,28 @@ class Graph(object):
 
 class Node(object):
     def __init__(self, f, name):
-        self.input_nodes = []
+        self.input_nodes = {}
+        self.input_keys  = []
         self.f = f
         self.name = name
         self.output = None
 
-    def set_input_nodes(self,nodes):
-        if not (type(nodes) == list or type(nodes) == tuple):
-            nodes = [nodes]
-
+    def set_input_nodes(self, nodes, keys):
+        """
+        nodes - dictionary of nodes (nodes.keys() in keys)
+        keys  - list of keys, determines the input ordering
+        """
+        self.input_keys  = keys
         self.input_nodes = nodes
 
     def get_output(self):
         if self.output == None:
-            if len(self.input_nodes) == 0:
+            if len(self.input_keys) == 0:
                 return self.f()
             else:
-                inputs = [n.get_output() for n in self.input_nodes]
+                inputs = [self.input_nodes[k].get_output()\
+                    for k in self.input_keys]
+
                 return self.f(*inputs)
         else:
             return self.output
