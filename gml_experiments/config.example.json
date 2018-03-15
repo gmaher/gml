@@ -1,0 +1,22 @@
+{"TRAIN_ITERATIONS":200000,
+  "BATCH_SIZE":1,
+  "ALPHA": 0.001,
+
+  "FEATURE_DESCRIPTOR_FILE":"data/features_descriptor.json",
+
+  "DIR_KEYS" :[
+    "DATA_DIRECTORY",
+    "TEST_DIRECTORY",
+    "TOPLEVEL_DIRECTORY",
+    "MODEL_DIRECTORY",
+    "PREDICTIONS_DIRECTORY",
+    "EVALUATION_DIRECTORY"
+  ],
+
+  "DATA_DIRECTORY":"data/train/json",
+  "TEST_DIRECTORY":"data/test/json",
+  "TOPLEVEL_DIRECTORY":"results/gaussian",
+  "MODEL_DIRECTORY":"results/gaussian/model",
+  "PREDICTIONS_DIRECTORY":"results/gaussian/prediction",
+  "EVALUATION_DIRECTORY":"results/gaussian/evaluation"
+}

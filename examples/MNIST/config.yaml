@@ -1,3 +1,0 @@
-DATA_DIR: "./data"
-EXPERIMENT_FILE: "experiment"
-EXPERIMENT_NAME: "MNISTExperiment"

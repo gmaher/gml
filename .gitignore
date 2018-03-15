@@ -1,4 +1,5 @@
 /examples/MNIST/data/
 /examples/MNIST/MNIST-data/
+/projects/
 *.pyc
 
