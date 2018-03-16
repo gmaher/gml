@@ -1,6 +1,6 @@
 import os
-from gml_io.io import upsert_dirs
-from gml_dataset.dataset import RandomDataset, MappedDataset, ThreadDataset
+from gml.gml_io.io import upsert_dirs
+from gml.gml_dataset.dataset import RandomDataset, MappedDataset, ThreadDataset
 
 def get_processors(basedir, config_key, config, G):
     processors = []

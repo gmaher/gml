@@ -1,6 +1,6 @@
 import numpy as np
-from gml_processors.processor import Processors, Processor
-from gml_io.io import load_json, save_json
+from gml.gml_processors.processor import Processors, Processor
+from gml.gml_io.io import load_json, save_json
 
 class DictionaryProcessor(Processor, metaclass=Processors):
     def __init__(self):

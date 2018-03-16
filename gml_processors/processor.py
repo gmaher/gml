@@ -1,4 +1,4 @@
-from gml import GMLPlugin, registerPlugin
+from gml.gml import GMLPlugin, registerPlugin
 
 MODULE_NAME = "Processors"
 

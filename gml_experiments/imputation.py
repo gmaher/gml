@@ -1,13 +1,13 @@
-from gml_models.gaussian import ConditionalGaussian, GaussianLogger
-from gml_processors.dictionaryProcessor import DictionaryProcessor, VecToDictProcessor
-from gml_datasets.dataset import RandomDataset, MappedDataset, ThreadDataset, IDListDataset, LRMappedDataset
-from gml_io.io import save_json, load_json, configure_dirs, upsert_dirs
-from gml_graph.graph import Graph
-from gml_apps.apps import GMLApp
-from gml_metrics.metrics import absError, stdRelativeErrorMissing, l2Error
-from gml_util.train import train
-from gml_evaluations.evaluation import dropFields
-from gml_logging.logger import LossLogger
+from gml.gml_models.gaussian import ConditionalGaussian, GaussianLogger
+from gml.gml_processors.dictionaryProcessor import DictionaryProcessor, VecToDictProcessor
+from gml.gml_datasets.dataset import RandomDataset, MappedDataset, ThreadDataset, IDListDataset, LRMappedDataset
+from gml.gml_io.io import save_json, load_json, configure_dirs, upsert_dirs
+from gml.gml_graph.graph import Graph
+from gml.gml_apps.apps import GMLApp
+from gml.gml_metrics.metrics import absError, stdRelativeErrorMissing, l2Error
+from gml.gml_util.train import train
+from gml.gml_evaluations.evaluation import dropFields
+from gml.gml_logging.logger import LossLogger
 
 from tqdm import tqdm
 import os

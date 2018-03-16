@@ -1,8 +1,8 @@
 import os
 import sys
 sys.path.append(os.path.abspath('..'))
-from gml_experiments.imputation import get_app
-from gml_io.io import load_json
+from gml.gml_experiments.imputation import get_app
+from gml.gml_io.io import load_json
 
 from tqdm import tqdm
 import numpy as np

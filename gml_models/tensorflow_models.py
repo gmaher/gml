@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-from gml_models.model import Models, Model
+from gml.gml_models.model import Models, Model
 
 import numpy as np
 EPS = 1e-5
