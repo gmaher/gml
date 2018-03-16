@@ -1,0 +1,6 @@
+numpy
+tensorci_client==0.0.14
+tensorflow==0.13
+tqdm==4.19.5
+tensorci_client==0.0.13
+pyyaml==3.12

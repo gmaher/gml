@@ -1,5 +1,3 @@
-import inspect
-
 def input_node(self):
     if self.output == None:
         raise RuntimeError("node {} is an input node but no input supplied".format(self.name))

@@ -17,7 +17,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-input')
 parser.add_argument('-output_dir')
 # parser.add_argument('-override_file')
-parser.add_argument('-max_int_categories', type=int)
+parser.add_argument('-max_int_categories', type=int, default=100)
 
 args = parser.parse_args()
 

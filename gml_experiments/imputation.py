@@ -61,9 +61,9 @@ def get_app(base_dir, config, mode="TRAIN"):
     App.setModel(model)
 
     preprocess_func = lambda x: graph.get('Xnorm', {'X': x} )
+    for d in config['DIR_KEYS']: upsert_dirs(config[d])
 
     if mode == "TRAIN":
-        for d in config['DIR_KEYS']: upsert_dirs(config[d])
 
         train_files = os.listdir(config['DATA_DIRECTORY'])
         train_files = [config['DATA_DIRECTORY']+'/'+s for s in train_files]
